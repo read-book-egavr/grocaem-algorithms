@@ -2,25 +2,33 @@ class BinarySearch():
 
   def search_iterative(self, list, item):
     # low and high keep track of which part of the list you'll search in.
-    low = 0
-    high = len(list) - 1
+    # больше и меньше следите за тем, в какой части списка вы будите совершать поиск.
+    low = 0                 # низкий
+    high = len(list) - 1    # высокий
+    # В этих переменных храним границы той части списка, в которой выполняется поиск.
 
     # While you haven't narrowed it down to one element ...
+    # Пока мы не сузим границы до низа, до одного элемента
     while low <= high:
       # ... check the middle element
-      mid = (low + high) // 2
+      # проверяем средний элемент
+      mid = (low + high) // 2 # если значение нечетно, то Python автоматически 
+      # округляет значение mid (середина) в меньшую сторону
       guess = list[mid]
       # Found the item.
-      if guess == item:
-        return mid
+      if guess == item: # тут мы смотрим предпологаемое значение равно или нет загаданному
+        return mid      # если да, то возвращаем его индекс
       # The guess was too high.
-      if guess > item:
+      # Догадка была слишком большой
+      if guess > item: # Если предпологаемое число слишком велико, то обновляется переменная high
         high = mid - 1
       # The guess was too low.
+      # Догадка была слишком маленькой      
       else:
-        low = mid + 1
+        low = mid + 1 # Если предпологаемое число слишком мало, то переменная low обновляется соответственно.
 
     # Item doesn't exist
+    # Знаение не существует вернем None
     return None
 
   def search_recursive(self, list, low, high, item):
